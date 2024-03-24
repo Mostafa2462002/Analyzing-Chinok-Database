@@ -1,0 +1,42 @@
+ques 1
+select a.Name , sum(Total) total_spent
+from Artist a
+join Album al
+on al.ArtistId = a.ArtistId
+join Track t
+on t.AlbumId = al.AlbumId
+join InvoiceLine il
+on il.TrackId = t.TrackId
+join Invoice i
+on il.InvoiceId = i.InvoiceId
+group by a.name
+order by total_spent DESC
+LIMIT 5
+
+ques2
+select e.FirstName , count(c.FirstName) Number_of_Customers
+from Employee e
+left join Customer c
+on c.SupportRepId = e.EmployeeId
+GROUP by e.FirstName
+order by Number_of_Customers desc
+
+
+ques3
+SELECT g.Name , avg(t.UnitPrice)
+from Genre g
+join Track t
+on t.GenreId = g.GenreId
+group by g.Name
+
+ques4
+select m.name, count(t.name) 'Count Num'
+from MediaType m
+join Track t
+on t.MediaTypeId=m.MediaTypeId
+GROUP by m.name
+order by count(t.name) desc
+
+
+
+
